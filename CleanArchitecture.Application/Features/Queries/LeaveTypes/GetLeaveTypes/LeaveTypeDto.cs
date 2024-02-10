@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Application.Features.Queries.LeaveTypes;
+﻿namespace CleanArchitecture.Application.Features.Queries.LeaveTypes.GetLeaveTypes;
 
 public class LeaveTypeDto
 {
