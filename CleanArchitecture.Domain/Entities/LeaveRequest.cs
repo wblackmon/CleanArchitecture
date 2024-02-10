@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Domain.Common;
 
-namespace CleanArchitecture.Domain;
+namespace CleanArchitecture.Domain.Entities;
 
 public class LeaveRequest : BaseEntity
 {

@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Contracts.Persistence;
+using CleanArchitecture.Application.Exceptions;
+using CleanArchitecture.Domain.Entities;
 using MediatR;
 
 namespace CleanArchitecture.Application.Features.Queries.LeaveTypes.GetLeaveTypes;
@@ -19,6 +21,12 @@ public class GetLeaveTypesQueryHandler : IRequestHandler<GetLeaveTypesQuery, IEn
     {
         // Query the database
         var leaveTypes = await _leaveTypeRepository.GetAllAsync();
+
+        // Verify that the entity exists
+        if (leaveTypes == null)
+        {
+            throw new NotFoundException(nameof(LeaveType));
+        }
 
         // Map the results to a list of LeaveTypeDto
         var data = _mapper.Map<List<LeaveTypeDto>>(leaveTypes);

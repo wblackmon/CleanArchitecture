@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Features.Queries.LeaveTypes.GetLeaveTypeDetails;
+namespace CleanArchitecture.Application.Features.Commands.DeleteLeaveType;
 
-public class GetLeaveTypeDetailsQuery : IRequest<LeaveTypeDetailsDto>
+public class DeleteLeaveTypeCommand : IRequest<Unit>
 {
     public int Id { get; set; }
 }

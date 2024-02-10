@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Contracts.Persistence;
+using CleanArchitecture.Application.Exceptions;
+using CleanArchitecture.Domain;
+using CleanArchitecture.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Features.Queries.LeaveTypes.GetLeaveTypeDetails;
 
-public class GetLeaveTypeDetailsQueryHandler : IRequestHandler<GetLeaveTypeDetailsQuery, GetLeaveTypeDetailsDto>
+public class GetLeaveTypeDetailsQueryHandler : IRequestHandler<GetLeaveTypeDetailsQuery, LeaveTypeDetailsDto>
 {
-    readonly ILeaveTypeRepository _leaveTypeRepository;
-    readonly IMapper _mapper;
+    private readonly ILeaveTypeRepository _leaveTypeRepository;
+    private readonly IMapper _mapper;
 
     public GetLeaveTypeDetailsQueryHandler(ILeaveTypeRepository leaveTypeRepository, IMapper mapper)
     {
@@ -20,13 +23,19 @@ public class GetLeaveTypeDetailsQueryHandler : IRequestHandler<GetLeaveTypeDetai
         _mapper = mapper;
     }
 
-    public async Task<GetLeaveTypeDetailsDto> Handle(GetLeaveTypeDetailsQuery request, CancellationToken cancellationToken)
+    public async Task<LeaveTypeDetailsDto> Handle(GetLeaveTypeDetailsQuery request, CancellationToken cancellationToken)
     {
         // Query the database
         var leaveType = await _leaveTypeRepository.GetByIdAsync(request.Id);
 
-        // Map the result to a LeaveTypeDto
-        var data = _mapper.Map<GetLeaveTypeDetailsDto>(leaveType);
+        // Verify that the entity exists
+        if (leaveType == null)
+        {
+            throw new NotFoundException(nameof(LeaveType), request.Id);
+        }
+
+        // Convert
+        var data = _mapper.Map<LeaveTypeDetailsDto>(leaveType);
 
         // Return the result
         return data;
