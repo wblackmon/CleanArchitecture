@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application
 {
@@ -11,7 +6,7 @@ namespace CleanArchitecture.Application
     {
         MappingProfiles()
         {
-            //CreateMap<Domain.LeaveType, Models.LeaveTypeDto>().ReverseMap();
+            CreateMap<Domain.LeaveType, LeaveTypeDto>().ReverseMap();
             //CreateMap<Domain.LeaveType, Models.CreateLeaveTypeDto>().ReverseMap();
             //CreateMap<Domain.LeaveType, Models.UpdateLeaveTypeDto>().ReverseMap();
 
