@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Application.Contracts.Persistence;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Persistence.DatabaseContext;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,35 @@ public class LeaveRequestRepository : GenericRepository<LeaveRequest>, ILeaveReq
 {
     public LeaveRequestRepository(CleanArchitectureDbConext context) : base(context)
     {
+
+    }
+
+    public async Task<List<LeaveRequest>> GetLeaveRequestByEmployeeId(string employeeId)
+    {
+        var leaveRequests = await _context.LeaveRequests
+            .Where(x => x.RequestingEmployeeId == employeeId)
+            .Include(q => q.LeaveType)  
+            .ToListAsync();
+
+        return leaveRequests;
+    }
+
+    public async Task<List<LeaveRequest>> GetAllLeaveRequests()
+    {
+        var leaveRequests = await _context.LeaveRequests
+            .Include(x => x.LeaveType)
+            .ToListAsync();
+
+        return leaveRequests;
+    }
+
+    public async Task<LeaveRequest?> GetLeaveRequestByid(int id)
+    {
+        var leaveRequest = await _context.LeaveRequests
+            .Where(x => x.Id == id)
+            .Include(x => x.LeaveType)
+            .FirstOrDefaultAsync();
+
+        return leaveRequest;
     }
 }
