@@ -11,7 +11,7 @@ public class BadRequestException : ApplicationException
 {
     public BadRequestException(string message) : base(message)
     {
-
+        ValidationErrors = new();
     }
 
     public BadRequestException(string message, ValidationResult validationResult) : base(message)
