@@ -2,6 +2,7 @@
 using CleanArchitecture.Application.Contracts.Infrastructure;
 using CleanArchitecture.Application.Contracts.Persistence;
 using CleanArchitecture.Application.Exceptions;
+using CleanArchitecture.Application.Features.LeaveTypes.Commands.CreateLeaveType;
 using CleanArchitecture.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -11,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Features.Commands.CreateLeaveType;
+namespace CleanArchitecture.Application.Features.LeaveTypes.Commands.CreateLeaveType;
 
 public class CreateLeaveTypeCommandHandler : IRequestHandler<CreateLeaveTypeCommand, int>
 {

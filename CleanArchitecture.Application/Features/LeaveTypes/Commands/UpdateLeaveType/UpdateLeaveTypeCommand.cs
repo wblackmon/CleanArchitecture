@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Features.Commands.UpdateLeaveType;
+namespace CleanArchitecture.Application.Features.LeaveTypes.Commands.UpdateLeaveType;
 
 public class UpdateLeaveTypeCommand : IRequest<Unit>
 {

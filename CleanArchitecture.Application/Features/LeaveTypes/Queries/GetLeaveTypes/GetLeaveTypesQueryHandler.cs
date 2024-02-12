@@ -5,9 +5,9 @@ using CleanArchitecture.Application.Exceptions;
 using CleanArchitecture.Domain.Entities;
 using MediatR;
 
-namespace CleanArchitecture.Application.Features.Queries.LeaveTypes.GetLeaveTypes;
+namespace CleanArchitecture.Application.Features.LeaveTypes.Queries.GetLeaveTypes;
 
-public class GetLeaveTypesQueryHandler : IRequestHandler<GetLeaveTypesQuery, IEnumerable<LeaveTypeDto>>
+public class GetLeaveTypesQueryHandler : IRequestHandler<GetLeaveTypesQuery, List<LeaveTypeDto>>
 {
     private readonly ILeaveTypeRepository _leaveTypeRepository;
     private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ public class GetLeaveTypesQueryHandler : IRequestHandler<GetLeaveTypesQuery, IEn
         _logger = logger;
     }
 
-    public async Task<IEnumerable<LeaveTypeDto>> Handle(GetLeaveTypesQuery request, CancellationToken cancellationToken)
+    public async Task<List<LeaveTypeDto>> Handle(GetLeaveTypesQuery request, CancellationToken cancellationToken)
     {
         // Query the database
         var leaveTypes = await _leaveTypeRepository.GetAllAsync();

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Features.Queries.LeaveTypes.GetLeaveTypeDetails;
+namespace CleanArchitecture.Application.Features.LeaveTypes.Queries.GetLeaveTypeDetails;
 
 public class GetLeaveTypeDetailsQueryHandler : IRequestHandler<GetLeaveTypeDetailsQuery, LeaveTypeDetailsDto>
 {

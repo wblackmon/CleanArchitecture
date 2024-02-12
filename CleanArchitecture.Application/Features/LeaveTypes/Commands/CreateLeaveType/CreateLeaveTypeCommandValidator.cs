@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Features.Commands.CreateLeaveType;
+namespace CleanArchitecture.Application.Features.LeaveTypes.Commands.CreateLeaveType;
 
 public class CreateLeaveTypeCommandValidator : AbstractValidator<CreateLeaveTypeCommand>
 {

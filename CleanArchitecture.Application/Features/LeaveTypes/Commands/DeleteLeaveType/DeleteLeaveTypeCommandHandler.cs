@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Features.Commands.DeleteLeaveType;
+namespace CleanArchitecture.Application.Features.LeaveTypes.Commands.DeleteLeaveType;
 
 public class DeleteLeaveTypeCommandHandler : IRequestHandler<DeleteLeaveTypeCommand, Unit>
 {

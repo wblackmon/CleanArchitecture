@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Features.Commands.UpdateLeaveType;
+namespace CleanArchitecture.Application.Features.LeaveTypes.Commands.UpdateLeaveType;
 
 public class UpdateLeaveTypeCommandValidator : AbstractValidator<UpdateLeaveTypeCommand>
 {
@@ -30,7 +30,7 @@ public class UpdateLeaveTypeCommandValidator : AbstractValidator<UpdateLeaveType
         _leaveTypeRepository = leaveTypeRepository;
     }
 
-    private  async Task<bool> LeaveTypeExists(int id, CancellationToken token)
+    private async Task<bool> LeaveTypeExists(int id, CancellationToken token)
     {
         var leaveType = await _leaveTypeRepository.GetByIdAsync(id);
         return leaveType != null;
