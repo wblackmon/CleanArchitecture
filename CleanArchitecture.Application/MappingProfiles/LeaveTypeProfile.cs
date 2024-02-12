@@ -9,7 +9,7 @@ namespace CleanArchitecture.Application.MappingProfiles;
 
 public class LeaveTypeProfile : Profile
 {
-    LeaveTypeProfile()
+    public LeaveTypeProfile()
     {
         CreateMap<LeaveTypeDto, LeaveType>().ReverseMap();
         CreateMap<LeaveType, LeaveTypeDetailsDto>();
