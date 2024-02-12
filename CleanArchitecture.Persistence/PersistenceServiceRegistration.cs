@@ -13,7 +13,7 @@ public static class PersistenceServiceRegistration
     {
         services.AddDbContext<CleanArchitectureDbConext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("CleanArchitectureDatabaseConnectionString"));
+            options.UseSqlServer(configuration.GetConnectionString("LocalConnection"));
         });
 
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
