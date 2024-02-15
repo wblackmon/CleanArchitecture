@@ -44,6 +44,7 @@ public class CreateLeaveTypeCommandHandler : IRequestHandler<CreateLeaveTypeComm
         // Save the entity to the database
         await _leaveTypeRepository.CreateAsync(leaveType);
 
+        _logger.LogInformation($"Leave Type {leaveType.Id} is successfully created.");
         // Return the result
         return leaveType.Id;
     }

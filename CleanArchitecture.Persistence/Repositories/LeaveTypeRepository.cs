@@ -18,7 +18,7 @@ namespace CleanArchitecture.Persistence.Repositories
 
         public async Task<bool> IsLeaveTypeUnique(string name)
         {
-            var matches = await _context.LeaveTypes.AnyAsync(lt => lt.Name.Equals(name));
+            var matches = await _context.LeaveTypes.AnyAsync(lt => !lt.Name.Equals(name));
             return matches;
         }
     }
