@@ -42,6 +42,9 @@ namespace CleanArchitecture.Api.Controllers
         // Create a new LeaveAllocation
         // POST api/<LeaveAllocationController>
         [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Post([FromBody] CreateLeaveAllocationCommand command)
         {
             var response = await _mediator.Send(command);
@@ -51,6 +54,10 @@ namespace CleanArchitecture.Api.Controllers
         // Update LeaveAllocation
         // PUT api/<LeaveAllocationController>/5
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> Put([FromBody] UpdateLeaveAllocationCommand command)
         {
             await _mediator.Send(command);
@@ -59,6 +66,9 @@ namespace CleanArchitecture.Api.Controllers
 
         // DELETE api/<LeaveAllocationController>/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete(int id)
         {
             var command = new DeleteLeaveAllocationCommand() { Id = id };

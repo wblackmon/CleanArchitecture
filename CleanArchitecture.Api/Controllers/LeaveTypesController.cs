@@ -43,6 +43,9 @@ namespace CleanArchitecture.Api.Controllers
         // POST api/<LeaveTypesController>
         // Create a new leave type
         [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<int> Post(CreateLeaveTypeCommand command)
         {
             var response = await _mediator.Send(command);
@@ -52,6 +55,10 @@ namespace CleanArchitecture.Api.Controllers
         // PUT api/<LeaveTypesController>/5
         // Update a leave type
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> Put(UpdateLeaveTypeCommand command)
 
         {
@@ -62,6 +69,9 @@ namespace CleanArchitecture.Api.Controllers
         // DELETE api/<LeaveTypesController>/5
         // Delete a leave type
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete(int id)
         {
             var command = new DeleteLeaveTypeCommand() { Id = id };
