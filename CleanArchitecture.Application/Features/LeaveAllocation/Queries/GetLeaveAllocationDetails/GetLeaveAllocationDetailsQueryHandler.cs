@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Features.LeaveAllocation.Queries.GetLeaveAllocationDetails
 {
-    public class GetLeaveAllocationDetailsQueryHandler : IRequestHandler<GetLeaveAllocationDetails, LeaveAllocationDetailsDto>
+    public class GetLeaveAllocationDetailsQueryHandler : IRequestHandler<GetLeaveAllocationDetailsQuery, LeaveAllocationDetailsDto>
     {
         private readonly ILeaveAllocationRepository _leaveAllocationRepository;
         private readonly IMapper _mapper;
@@ -18,7 +18,7 @@ namespace CleanArchitecture.Application.Features.LeaveAllocation.Queries.GetLeav
             _leaveAllocationRepository = leaveAllocationRepository;
             _mapper = mapper;
         }
-        public async Task<LeaveAllocationDetailsDto> Handle(GetLeaveAllocationDetails request, CancellationToken cancellationToken)
+        public async Task<LeaveAllocationDetailsDto> Handle(GetLeaveAllocationDetailsQuery request, CancellationToken cancellationToken)
         {
             var leaveAllocation = await _leaveAllocationRepository.GetLeaveAllocationById(request.Id);
             return _mapper.Map<LeaveAllocationDetailsDto>(leaveAllocation);

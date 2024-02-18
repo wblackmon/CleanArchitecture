@@ -9,6 +9,6 @@ namespace CleanArchitecture.Application.Features.LeaveAllocation.Commands.Create
 {
     public class CreateLeaveAllocationCommand : IRequest<Unit>
     {
-        public  int Id { get; set; }
+        public  int LeaveTypeId { get; set; }
     }
 }

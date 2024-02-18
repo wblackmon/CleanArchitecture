@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CleanArchitecture.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -92,8 +92,17 @@ namespace CleanArchitecture.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateModified", "DefaultDays", "ModifiedBy", "Name" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2024, 2, 11, 19, 13, 59, 776, DateTimeKind.Local).AddTicks(5999), new DateTime(2024, 2, 11, 19, 13, 59, 776, DateTimeKind.Local).AddTicks(6047), 10, null, "Paid Leave" },
-                    { 2, null, new DateTime(2024, 2, 11, 19, 13, 59, 776, DateTimeKind.Local).AddTicks(6050), new DateTime(2024, 2, 11, 19, 13, 59, 776, DateTimeKind.Local).AddTicks(6052), 10, null, "Sick Leave" }
+                    { 1, null, new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9485), new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9497), 10, null, "Paid Leave" },
+                    { 2, null, new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9499), new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9500), 10, null, "Sick Leave" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "LeaveAllocations",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateModified", "EmployeeId", "LeaveTypeId", "ModifiedBy", "NumberOfDays", "Period" },
+                values: new object[,]
+                {
+                    { 1, null, new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467), new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467), "1", 1, null, 10, 2021 },
+                    { 2, null, new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467), new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467), "2", 2, null, 10, 2021 }
                 });
 
             migrationBuilder.CreateIndex(

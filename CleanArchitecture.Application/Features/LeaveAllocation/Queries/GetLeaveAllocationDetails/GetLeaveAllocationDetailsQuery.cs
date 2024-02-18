@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Features.LeaveAllocation.Queries.GetLeaveAllocationDetails
 {
-    public class GetLeaveAllocationDetails : IRequest<LeaveAllocationDetailsDto>
+    public class GetLeaveAllocationDetailsQuery : IRequest<LeaveAllocationDetailsDto>
     {
         public int Id { get; set; }
     }

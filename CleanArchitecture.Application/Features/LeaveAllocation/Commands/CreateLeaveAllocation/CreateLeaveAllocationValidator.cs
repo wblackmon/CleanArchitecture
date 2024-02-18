@@ -16,15 +16,16 @@ namespace CleanArchitecture.Application.Features.LeaveAllocation.Commands.Create
         {
             _leaveTypeRepository = leaveTypeRepository;
 
-            //RuleFor(p => p.NumberOfDays)
-            //    .GreaterThan(0)
-            //    .MustAsync(LeaveTypeExists);
+            RuleFor(p => p.LeaveTypeId)
+                .GreaterThan(0)
+                .MustAsync(LeaveTypeExists)
+                .WithMessage("{PropertyName} must be greater than 0 and leave type must exist");
 
         }
         private async Task<bool> LeaveTypeExists(int leaveTypeId, CancellationToken token)
         {
-            //return await _leaveTypeRepository.IsLeaveTypeUnique(leaveTypeId);
-            return true;
+            var leaveType =  await _leaveTypeRepository.GetByIdAsync(leaveTypeId);
+            return leaveType != null;
         }
 
     }

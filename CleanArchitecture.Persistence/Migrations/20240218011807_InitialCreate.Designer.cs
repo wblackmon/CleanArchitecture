@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArchitecture.Persistence.Migrations
 {
     [DbContext(typeof(CleanArchitectureDbConext))]
-    [Migration("20240212011400_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240218011807_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,6 +63,28 @@ namespace CleanArchitecture.Persistence.Migrations
                     b.HasIndex("LeaveTypeId");
 
                     b.ToTable("LeaveAllocations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateCreated = new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467),
+                            DateModified = new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467),
+                            EmployeeId = "1",
+                            LeaveTypeId = 1,
+                            NumberOfDays = 10,
+                            Period = 2021
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateCreated = new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467),
+                            DateModified = new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467),
+                            EmployeeId = "2",
+                            LeaveTypeId = 2,
+                            NumberOfDays = 10,
+                            Period = 2021
+                        });
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.LeaveRequest", b =>
@@ -153,16 +175,16 @@ namespace CleanArchitecture.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 2, 11, 19, 13, 59, 776, DateTimeKind.Local).AddTicks(5999),
-                            DateModified = new DateTime(2024, 2, 11, 19, 13, 59, 776, DateTimeKind.Local).AddTicks(6047),
+                            DateCreated = new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9485),
+                            DateModified = new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9497),
                             DefaultDays = 10,
                             Name = "Paid Leave"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 2, 11, 19, 13, 59, 776, DateTimeKind.Local).AddTicks(6050),
-                            DateModified = new DateTime(2024, 2, 11, 19, 13, 59, 776, DateTimeKind.Local).AddTicks(6052),
+                            DateCreated = new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9499),
+                            DateModified = new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9500),
                             DefaultDays = 10,
                             Name = "Sick Leave"
                         });
