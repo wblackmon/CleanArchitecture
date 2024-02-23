@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Application.Models.Email;
 
-public class Email
+public class EmailMessage
 {
     public string To { get; set; } = string.Empty;
     public string Subject { get; set; } = string.Empty;

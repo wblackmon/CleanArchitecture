@@ -41,6 +41,11 @@ public class LeaveAllocationRepository : GenericRepository<LeaveAllocation>, ILe
         return leaveallocations;
     }
 
+    public async  Task<LeaveAllocation> GetLeaveAllocationByEmployeeIdAndLeaveTypeId(string employeeId, int leaveTypeId)
+    {
+        return await _context.LeaveAllocations.FirstOrDefaultAsync(x => x.EmployeeId == employeeId && x.LeaveTypeId == leaveTypeId) ?? new LeaveAllocation();
+    }
+
     public async Task<LeaveAllocation?> GetLeaveAllocationById(int id)
     {
         var leaveAllocation = await _context.LeaveAllocations
@@ -60,7 +65,7 @@ public class LeaveAllocationRepository : GenericRepository<LeaveAllocation>, ILe
         return leaveAllocations;
     }
 
-    public async Task<List<LeaveAllocation>> GetLeaveAllocationsByEmployeeAndLeaveType(string employeeId, int leaveTypeId)
+    public async Task<List<LeaveAllocation>> GetLeaveAllocationsByEmployeeAndLeaveTypeId(string employeeId, int leaveTypeId)
     {
         var leaveAllocations = await _context.LeaveAllocations
             .Where(x => x.EmployeeId == employeeId && x.LeaveTypeId == leaveTypeId)

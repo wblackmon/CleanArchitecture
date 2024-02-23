@@ -17,7 +17,7 @@ public class LeaveRequestRepository : GenericRepository<LeaveRequest>, ILeaveReq
 
     }
 
-    public async Task<List<LeaveRequest>> GetLeaveRequestByEmployeeId(string employeeId)
+    public async Task<List<LeaveRequest>> GetLeaveRequestsByEmployeeId(string employeeId)
     {
         var leaveRequests = await _context.LeaveRequests
             .Where(x => x.RequestingEmployeeId == employeeId)

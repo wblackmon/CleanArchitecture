@@ -19,7 +19,7 @@ public class EmailSender : IEmailSender
     {
         EmailSettings = emailSettings.Value;
     }
-    public async Task<bool> SendEmail(Email email)
+    public async Task<bool> SendEmail(Application.Models.Email.EmailMessage email)
     {
         // Find communicaion resoure in the Azure portal
         var connectionString = "Endpoint=https://communication.azure.com/;AccessKey=your_access_key";
