@@ -12,9 +12,6 @@ namespace CleanArchitecture.Application
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
-            // Add repositories here
-            //services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
-
 
             return services;
         }

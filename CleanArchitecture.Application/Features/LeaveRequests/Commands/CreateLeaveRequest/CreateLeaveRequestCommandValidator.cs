@@ -15,6 +15,5 @@ public class CreateLeaveRequestCommandValidator : AbstractValidator<CreateLeaveR
     {
         _leaveTypeRepository = leaveTypeRepository;
         Include(new BaseLeaveRequestValidator(_leaveTypeRepository));
-        
     }
 }

@@ -15,7 +15,6 @@ public static class InfrastructureServicesRegistration
         services.AddTransient<IEmailSender, EmailSender>();
         services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
-
         return services;
     }
 }

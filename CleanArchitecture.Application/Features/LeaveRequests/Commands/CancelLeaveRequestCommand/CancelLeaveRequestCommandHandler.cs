@@ -34,8 +34,9 @@ public class CancelLeaveRequestCommandHandler : IRequestHandler<CancelLeaveReque
 
         leaveRequest.Cancelled = true;
         await _leaveRequestRepository.UpdateAsync(leaveRequest);
-
-        if(leaveRequest.Approved.HasValue && leaveRequest.Approved.Value)
+        
+        // Reevaluate the leave allocations for this employee for the leave type
+        if(leaveRequest.Approved && leaveRequest.Approved)
         {
             var allocation = await _leaveAllocationRepository.GetLeaveAllocationByEmployeeIdAndLeaveTypeId(leaveRequest.RequestingEmployeeId, leaveRequest.LeaveTypeId);
             int days = (int)(leaveRequest.EndDate - leaveRequest.StartDate).TotalDays;

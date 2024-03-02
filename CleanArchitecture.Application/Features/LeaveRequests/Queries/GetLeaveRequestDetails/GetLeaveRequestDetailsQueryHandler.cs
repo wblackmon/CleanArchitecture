@@ -16,12 +16,12 @@ public class GetLeaveRequestDetailsQueryHandler : IRequestHandler<GetLeaveReques
 {
     private readonly ILeaveRequestRepository _leaveRequestRepository;
     private readonly IMapper _mapper;
-    private readonly IUserService _userService;
-    public GetLeaveRequestDetailsQueryHandler(IMapper mapper, ILeaveRequestRepository leaveRequestRepository, IUserService userService)
+    //private readonly IUserService _userService;
+    public GetLeaveRequestDetailsQueryHandler(IMapper mapper, ILeaveRequestRepository leaveRequestRepository)//, IUserService userService)
     {
         _mapper = mapper;
         _leaveRequestRepository = leaveRequestRepository;
-        _userService = userService;
+        //_userService = userService;
     }
     public async Task<LeaveRequestDetailsDto> Handle(GetLeaveRequestDetailsQuery request, CancellationToken cancellationToken)
     {
@@ -33,7 +33,7 @@ public class GetLeaveRequestDetailsQueryHandler : IRequestHandler<GetLeaveReques
             throw new NotFoundException(nameof(LeaveRequest), request.Id);
         }
 
-        leaveRequestDto.Employee = await _userService.GetEmployeeById(leaveRequestDto.RequestingEmployeeId);
+        //leaveRequestDto.Employee = await _userService.GetEmployeeById(leaveRequestDto.RequestingEmployeeId);
         return leaveRequestDto;
     }
 }

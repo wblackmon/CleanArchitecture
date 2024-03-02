@@ -1,4 +1,6 @@
 ﻿using CleanArchitecture.Application.Contracts.Persistence;
+using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Persistence.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Persistence.Repositories;
 
-public class GenericRepository<T> : IGenericRepository<T> where T : class
+public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
     protected readonly CleanArchitectureDbConext _context;
     public GenericRepository(CleanArchitectureDbConext context)
@@ -34,12 +36,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _context.Set<T>().AsNoTracking().ToListAsync();
     }
 
-    public async Task<T?> GetByIdAsync(int id)
+    public async Task<T> GetByIdAsync(int id)
     {
         // var entity = await _context.Set<T>().AsNoTracking().FindAsync(id);
 
         // Copilot help with commented query above
-        var entity = await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync();
+        var entity = await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(q => q.Id == id);
 
         return entity;
     }

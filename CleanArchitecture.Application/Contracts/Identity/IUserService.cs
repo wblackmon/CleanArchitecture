@@ -11,6 +11,6 @@ namespace CleanArchitecture.Application.Contracts.Identity
     {
         Task<List<Employee>> GetEmployees();
         Task<Employee> GetEmployeeById(string userId);
-        public string UserId { get; set; }
+        public string UserId { get; }
     }
 }

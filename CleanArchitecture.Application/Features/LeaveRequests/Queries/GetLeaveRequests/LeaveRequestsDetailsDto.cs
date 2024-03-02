@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Features.LeaveRequests.Queries.GetLeaveRequests;
 
-public class LeaveRequestsDto
+public class LeaveRequestsDetailsDto
 {
     public int Id { get; set; }
     public Employee Employee { get; set; } = new Employee();
