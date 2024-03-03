@@ -11,17 +11,13 @@ public class BadRequestException : ApplicationException
 {
     public BadRequestException(string message) : base(message)
     {
-        ValidationErrors = new();
+        ValidationErrors = new Dictionary<string, string>();
     }
 
     public BadRequestException(string message, ValidationResult validationResult) : base(message)
     {
-        ValidationErrors = new();
-        foreach (var error in validationResult.Errors)
-        {
-            ValidationErrors.Add(error.ErrorMessage);
-        }
+        ValidationErrors = validationResult.Errors.ToDictionary(e => e.PropertyName, e => e.ErrorMessage);
     }
 
-    public List<string> ValidationErrors { get; set; }
+    public IDictionary<string, string> ValidationErrors { get; set; }
 }
