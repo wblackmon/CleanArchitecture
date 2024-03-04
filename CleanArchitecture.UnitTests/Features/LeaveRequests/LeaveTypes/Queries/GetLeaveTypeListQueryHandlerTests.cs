@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.UnitTests.Features.LeaveTypes.Queries
+namespace CleanArchitecture.UnitTests.Features.LeaveRequests.LeaveTypes.Queries
 {
     public class GetLeaveTypeListQueryHandlerTests
     {
@@ -28,7 +28,7 @@ namespace CleanArchitecture.UnitTests.Features.LeaveTypes.Queries
             {
                 cfg.AddProfile<LeaveTypeProfile>();
             });
-            
+
             _mapper = configurationProvider.CreateMapper();
         }
 
