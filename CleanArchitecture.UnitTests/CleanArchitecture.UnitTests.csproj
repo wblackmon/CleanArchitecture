@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Moq" Version="4.20.70" />
@@ -29,7 +30,7 @@
   <ItemGroup>
     <Folder Include="Features\LeaveAllocations\" />
     <Folder Include="Features\LeaveRequests\" />
-    <Folder Include="Features\LeaveTypes\" />
+    <Folder Include="Features\LeaveTypes\Commands\" />
   </ItemGroup>
 
 </Project>
