@@ -18,6 +18,6 @@ public class CleanArchitectureIdentityDbConext : IdentityDbContext<ApplicationUs
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-        builder.ApplyConfigurationsFromAssembly(typeof(CleanArchitectureIdentityDbConext).Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(IdentityDbContext).Assembly);
     }
 }
