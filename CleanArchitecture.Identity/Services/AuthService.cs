@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Application.Contracts.Identity;
 using CleanArchitecture.Application.Exceptions;
 using CleanArchitecture.Application.Models.Identity;
-using CleanArchitecture.Identiy.Models;
+using CleanArchitecture.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -12,7 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Identiy.Services;
+namespace CleanArchitecture.Identity.Services;
 
 //
 public class AuthService : IAuthService

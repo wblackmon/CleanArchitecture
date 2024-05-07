@@ -1,17 +1,19 @@
 ﻿using CleanArchitecture.Application.Contracts.Identity;
-using CleanArchitecture.Identiy.Services;
+using CleanArchitecture.Identity.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
- using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Tokens;
 using System.Runtime.CompilerServices;
-using CleanArchitecture.Identiy.DbContext;
+using CleanArchitecture.Identity.DbContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using CleanArchitecture.Identiy.Models;
+using CleanArchitecture.Identity.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using CleanArchitecture.Identity.Models;
+using CleanArchitecture.Identity.Services;
 
-namespace CleanArchitecture.Identiy
+namespace CleanArchitecture.Identity
 {
     public static class IdentityServicesRegistration
     {
@@ -34,18 +36,18 @@ namespace CleanArchitecture.Identiy
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = configuration["JwtSettings:Issuer"],
-                        ValidAudience = configuration["JwtSettings:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["JwtSettings:Secret"]))
-                    };
-                });
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = configuration["JwtSettings:Issuer"],
+                    ValidAudience = configuration["JwtSettings:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["JwtSettings:Secret"]))
+                };
+            });
 
             return services;
         }

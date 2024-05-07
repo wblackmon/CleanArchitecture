@@ -1,12 +1,12 @@
 ﻿using CleanArchitecture.Application.Contracts.Identity;
 using CleanArchitecture.Application.Models.Identity;
 using CleanArchitecture.Application.Models;
-using CleanArchitecture.Identiy.Models;
+using CleanArchitecture.Identity.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
-namespace CleanArchitecture.Identiy.Services
+namespace CleanArchitecture.Identity.Services
 {
     public class UserService : IUserService
     {

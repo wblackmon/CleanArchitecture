@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Identiy.Models;
+﻿using CleanArchitecture.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Identiy.Configurations;
+namespace CleanArchitecture.Identity.Configurations;
 
 public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {

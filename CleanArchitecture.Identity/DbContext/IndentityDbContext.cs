@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Identiy.Models;
+using CleanArchitecture.Identity.Models;
 
-namespace CleanArchitecture.Identiy.DbContext;
+namespace CleanArchitecture.Identity.DbContext;
 
 public class CleanArchitectureIdentityDbConext : IdentityDbContext<ApplicationUser>
 {

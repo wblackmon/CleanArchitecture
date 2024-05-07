@@ -7,11 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Identiy.Configurations;
+namespace CleanArchitecture.Identity.Configurations;
 
-public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
+public class UserRoleConfiguration : IEntityTypeConfiguration<IdentityRole>
 {
-    // TODO: Add RoleConfiguration
     public void Configure(EntityTypeBuilder<IdentityRole> builder)
     {
         builder.HasData(
