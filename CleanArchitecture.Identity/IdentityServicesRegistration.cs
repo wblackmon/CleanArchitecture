@@ -10,8 +10,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using CleanArchitecture.Identity.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using CleanArchitecture.Identity.Models;
-using CleanArchitecture.Identity.Services;
+using CleanArchitecture.Application.Models.Identity;
 
 namespace CleanArchitecture.Identity
 {
@@ -19,17 +18,19 @@ namespace CleanArchitecture.Identity
     {
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IdentityDbContext>(options =>
+            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+
+            services.AddDbContext<CleanArchitectureIdentityDbConext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("IdentityConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("LocalConnection"));
             });
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<IdentityDbContext>()
+                .AddEntityFrameworkStores<CleanArchitectureIdentityDbConext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddAuthentication(options =>
             {
