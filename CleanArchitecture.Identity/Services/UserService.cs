@@ -11,13 +11,13 @@ namespace CleanArchitecture.Identity.Services
     public class UserService : IUserService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly HttpContextAccessor _httpContextAccessor;
-        public UserService(UserManager<ApplicationUser> userManager, HttpContextAccessor httpContextAccessor)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public UserService(UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
         }
-        public string UserId { get => _httpContextAccessor.HttpContext?.User?.FindFirstValue("uid"); }
+        public string UserId { get => _httpContextAccessor.HttpContext?.User?.FindFirstValue("uid") ?? string.Empty; }
 
         public async Task<Employee> GetEmployeeById(string userId)
         {
@@ -25,7 +25,7 @@ namespace CleanArchitecture.Identity.Services
             var employeeModel = new Employee
             {
                 Id = employee.Id,
-                Email = employee.Email,
+                Email = employee.Email ?? string.Empty,
                 Firstname = employee.FirstName,
                 Lastname = employee.LastName
             };
@@ -38,7 +38,7 @@ namespace CleanArchitecture.Identity.Services
             var employeeList = employees.Select(employee => new Employee
             {
                 Id = employee.Id,
-                Email = employee.Email,
+                Email = employee.Email ?? string.Empty,
                 Firstname = employee.FirstName,
                 Lastname = employee.LastName
             }).ToList();

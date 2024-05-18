@@ -67,8 +67,8 @@ namespace CleanArchitecture.Persistence.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LeaveTypeId = table.Column<int>(type: "int", nullable: false),
                     DateRequested = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RequestComments = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Approved = table.Column<bool>(type: "bit", nullable: true),
+                    RequestComments = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Approved = table.Column<bool>(type: "bit", nullable: false),
                     Cancelled = table.Column<bool>(type: "bit", nullable: false),
                     RequestingEmployeeId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -92,8 +92,8 @@ namespace CleanArchitecture.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateModified", "DefaultDays", "ModifiedBy", "Name" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9485), new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9497), 10, null, "Paid Leave" },
-                    { 2, null, new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9499), new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9500), 10, null, "Sick Leave" }
+                    { 1, null, new DateTime(2024, 5, 17, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(9016), new DateTime(2024, 5, 17, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(9027), 10, null, "Paid Leave" },
+                    { 2, null, new DateTime(2024, 5, 17, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(9030), new DateTime(2024, 5, 17, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(9031), 10, null, "Sick Leave" }
                 });
 
             migrationBuilder.InsertData(
@@ -101,8 +101,8 @@ namespace CleanArchitecture.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateModified", "EmployeeId", "LeaveTypeId", "ModifiedBy", "NumberOfDays", "Period" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467), new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467), "1", 1, null, 10, 2021 },
-                    { 2, null, new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467), new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467), "2", 2, null, 10, 2021 }
+                    { 1, null, new DateTime(2024, 5, 16, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(7911), new DateTime(2024, 5, 16, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(7911), "1", 1, null, 10, 2021 },
+                    { 2, null, new DateTime(2024, 5, 16, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(7911), new DateTime(2024, 5, 16, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(7911), "2", 2, null, 10, 2021 }
                 });
 
             migrationBuilder.CreateIndex(

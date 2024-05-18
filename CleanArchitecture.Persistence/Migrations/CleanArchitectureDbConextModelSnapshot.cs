@@ -17,7 +17,7 @@ namespace CleanArchitecture.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -65,8 +65,8 @@ namespace CleanArchitecture.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467),
-                            DateModified = new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467),
+                            DateCreated = new DateTime(2024, 5, 16, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(7911),
+                            DateModified = new DateTime(2024, 5, 16, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(7911),
                             EmployeeId = "1",
                             LeaveTypeId = 1,
                             NumberOfDays = 10,
@@ -75,8 +75,8 @@ namespace CleanArchitecture.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467),
-                            DateModified = new DateTime(2024, 2, 16, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(8467),
+                            DateCreated = new DateTime(2024, 5, 16, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(7911),
+                            DateModified = new DateTime(2024, 5, 16, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(7911),
                             EmployeeId = "2",
                             LeaveTypeId = 2,
                             NumberOfDays = 10,
@@ -92,7 +92,7 @@ namespace CleanArchitecture.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool?>("Approved")
+                    b.Property<bool>("Approved")
                         .HasColumnType("bit");
 
                     b.Property<bool>("Cancelled")
@@ -120,6 +120,7 @@ namespace CleanArchitecture.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RequestComments")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RequestingEmployeeId")
@@ -172,16 +173,16 @@ namespace CleanArchitecture.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9485),
-                            DateModified = new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9497),
+                            DateCreated = new DateTime(2024, 5, 17, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(9016),
+                            DateModified = new DateTime(2024, 5, 17, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(9027),
                             DefaultDays = 10,
                             Name = "Paid Leave"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9499),
-                            DateModified = new DateTime(2024, 2, 17, 19, 18, 7, 56, DateTimeKind.Local).AddTicks(9500),
+                            DateCreated = new DateTime(2024, 5, 17, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(9030),
+                            DateModified = new DateTime(2024, 5, 17, 21, 29, 5, 350, DateTimeKind.Local).AddTicks(9031),
                             DefaultDays = 10,
                             Name = "Sick Leave"
                         });

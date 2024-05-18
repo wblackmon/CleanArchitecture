@@ -3,6 +3,7 @@ using CleanArchitecture.Application.Exceptions;
 using CleanArchitecture.Application.Models.Identity;
 using CleanArchitecture.Identity.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,11 @@ public class AuthService : IAuthService
 
     public AuthService(UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
-        JwtSettings jwtSettings)
+        IOptions<JwtSettings> jwtSettings)
     {
         _userManager = userManager;
         _signInManager = signInManager;
-        _jwtSettings = jwtSettings;
+        _jwtSettings = jwtSettings.Value;
     }
     public async Task<AuthResponse> Login(AuthRequest request)
     {
@@ -44,7 +45,6 @@ public class AuthService : IAuthService
         {
             throw new BadRequestException($"Credentials for '{request.Email} are not valid.");
         }
-
 
         JwtSecurityToken jwtSecurityToken = await GenerateJwtToken(user);
         var token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
@@ -94,7 +94,7 @@ public class AuthService : IAuthService
         var userClaims = await _userManager.GetClaimsAsync(user);
         var roles = await _userManager.GetRolesAsync(user);
 
-        var roleClaims = roles.Select(role => new Claim("roles", role)).ToList();
+        var roleClaims = roles.Select(role => new Claim(ClaimTypes.Role, role)).ToList();
 
         var claims = new[]
         {

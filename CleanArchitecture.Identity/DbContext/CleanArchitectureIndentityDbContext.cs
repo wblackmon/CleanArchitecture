@@ -10,9 +10,9 @@ using CleanArchitecture.Identity.Models;
 
 namespace CleanArchitecture.Identity.DbContext;
 
-public class CleanArchitectureIdentityDbConext : IdentityDbContext<ApplicationUser>
+public class CleanArchitectureIdentityDbContext : IdentityDbContext<ApplicationUser>
 {
-    public CleanArchitectureIdentityDbConext(DbContextOptions<CleanArchitectureIdentityDbConext> options) : base(options)
+    public CleanArchitectureIdentityDbContext(DbContextOptions<CleanArchitectureIdentityDbContext> options) : base(options)
     {
     }
     protected override void OnModelCreating(ModelBuilder builder)

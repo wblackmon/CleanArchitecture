@@ -12,45 +12,42 @@ using CleanArchitecture.Identity.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using CleanArchitecture.Application.Models.Identity;
 
-namespace CleanArchitecture.Identity
+namespace CleanArchitecture.Identity;
+
+public static class IdentityServicesRegistration
 {
-    public static class IdentityServicesRegistration
+    public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
     {
-        public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
+        services.AddDbContext<CleanArchitectureIdentityDbContext>(options =>
         {
-            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+            options.UseSqlServer(configuration.GetConnectionString("LocalConnection"));
+        });
 
-            services.AddDbContext<CleanArchitectureIdentityDbConext>(options =>
+        services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<CleanArchitectureIdentityDbContext>()
+            .AddDefaultTokenProviders();
+
+        services.AddTransient<IAuthService, AuthService>();
+        services.AddTransient<IUserService, UserService>();
+
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
             {
-                options.UseSqlServer(configuration.GetConnectionString("LocalConnection"));
-            });
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = configuration["JwtSettings:Issuer"],
+                ValidAudience = configuration["JwtSettings:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["JwtSettings:Secret"]))
+            };
+        });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<CleanArchitectureIdentityDbConext>()
-                .AddDefaultTokenProviders();
-
-            services.AddTransient<IAuthService, AuthService>();
-            services.AddTransient<IUserService, UserService>();
-
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = configuration["JwtSettings:Issuer"],
-                    ValidAudience = configuration["JwtSettings:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["JwtSettings:Secret"]))
-                };
-            });
-
-            return services;
-        }
+        return services;
     }
 }
