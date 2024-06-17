@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Features.LeaveRequests.Queries.GetLeaveRequestDetails;
+namespace CleanArchitecture.Application.Features.LeaveRequests.Queries.GetLeaveRequestDetail;
 
-public class GetLeaveRequestDetailsQuery : IRequest<LeaveRequestDetailsDto>
+public class GetLeaveRequestDetailQuery : IRequest<LeaveRequestDetailDto>
 {
     public int Id { get; set; }
 }

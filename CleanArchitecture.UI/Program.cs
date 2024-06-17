@@ -17,6 +17,7 @@ builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = n
 
 builder.Services.AddScoped<ILeaveTypeService, LeaveTypeService>();
 builder.Services.AddScoped<ILeaveRequestService, LeaveRequestService>();
+builder.Services.AddScoped<ILeaveAllocationService, LeaveAllocationService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

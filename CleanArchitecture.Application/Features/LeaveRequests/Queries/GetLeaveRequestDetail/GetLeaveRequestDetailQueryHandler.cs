@@ -10,23 +10,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Features.LeaveRequests.Queries.GetLeaveRequestDetails;
+namespace CleanArchitecture.Application.Features.LeaveRequests.Queries.GetLeaveRequestDetail;
 
-public class GetLeaveRequestDetailsQueryHandler : IRequestHandler<GetLeaveRequestDetailsQuery, LeaveRequestDetailsDto>
+public class GetLeaveRequestDetailQueryHandler : IRequestHandler<GetLeaveRequestDetailQuery, LeaveRequestDetailDto>
 {
     private readonly ILeaveRequestRepository _leaveRequestRepository;
     private readonly IMapper _mapper;
     //private readonly IUserService _userService;
-    public GetLeaveRequestDetailsQueryHandler(IMapper mapper, ILeaveRequestRepository leaveRequestRepository)//, IUserService userService)
+    public GetLeaveRequestDetailQueryHandler(IMapper mapper, ILeaveRequestRepository leaveRequestRepository)//, IUserService userService)
     {
         _mapper = mapper;
         _leaveRequestRepository = leaveRequestRepository;
         //_userService = userService;
     }
-    public async Task<LeaveRequestDetailsDto> Handle(GetLeaveRequestDetailsQuery request, CancellationToken cancellationToken)
+    public async Task<LeaveRequestDetailDto> Handle(GetLeaveRequestDetailQuery request, CancellationToken cancellationToken)
     {
         var leaveRequest = _leaveRequestRepository.GetLeaveRequestByid(request.Id);
-        var leaveRequestDto = _mapper.Map<LeaveRequestDetailsDto>(leaveRequest);
+        var leaveRequestDto = _mapper.Map<LeaveRequestDetailDto>(leaveRequest);
 
         if (leaveRequestDto == null)
         {

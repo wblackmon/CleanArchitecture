@@ -13,6 +13,7 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
 builder.Services.AddControllers();
+builder.Services.AddOpenApiDocument();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("all", builder => builder.AllowAnyOrigin()
@@ -33,6 +34,7 @@ app.UseMiddleware<ExceptionHandler>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseOpenApi();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
